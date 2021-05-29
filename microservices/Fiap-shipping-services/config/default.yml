@@ -1,0 +1,12 @@
+server:
+  PORT: 3000
+shipping:
+  defaultOrigin: "01001001"
+  defaultService: "04510"
+  defaultFormat: 1
+db:
+  host: "127.0.0.1"
+  port: "3306"
+  user: "admin"
+  password: "admin123"
+  databaseName: "mba_microservices_favorites"

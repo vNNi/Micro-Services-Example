@@ -1,0 +1,117 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Fiap Microservices - Amazon case",
+		"description": "Using all concepts from build a microservice",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"tags": [{
+		"name": "Amazon",
+		"description": "API for Fiap MBA"
+	}],
+	"schemes": ["http"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+	"paths": {
+		"/products/": {
+			"get": {
+				"tags": ["Products"],
+				"description": "Search Products",
+				"parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "description": "filter by a category id",
+            "type": "string",
+            "example": "category=ED"
+          },
+          {
+            "in": "query",
+            "name": "term",
+            "description": "filter by a term",
+            "type": "string",
+            "example": "term=iphone"
+          },
+          {
+            "in": "query",
+            "name": "genre",
+            "description": "filter by a genre",
+            "type": "string",
+            "example": "genre=eletrodoméstico"
+          }
+        ],
+        "produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"products": [
+              {
+                "id": 1,
+                "title": "Geladeira brastemp frost free",
+                "description": "Geladeira Brastemp Frost Free Evox - Inverse 540,6L Ative BRO80 AK com as melhores condições você encontra no site do Magalu. Confira!",
+                "sort": "eletrodoméstico",
+                "price": 5496,
+                "category": "ED",
+                "visited": 0,
+                "created_at": "2021-05-18T03:49:41.000Z",
+                "updated_at": "2021-05-18T03:49:41.000Z"
+              }
+            ],
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Product": {
+			"required": [
+				"name",
+				"_id",
+				"companies"
+			],
+			"properties": {
+				"_id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"isPublic": {
+					"type": "boolean"
+				},
+				"name": {
+					"type": "string"
+				},
+				"books": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"amount": {
+								"type": "number"
+							}
+						}
+					}
+
+				},
+				"companies": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}
