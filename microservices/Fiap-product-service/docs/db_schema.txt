@@ -1,0 +1,45 @@
+Project social_blogging_site {
+database_type: 'Mysql'
+Note: 'MBA Microservices - Amazon'
+}
+
+Table product {
+id integer [primary key]
+title varchar
+description varchar
+sort varchar
+price float
+category varchar
+visited int
+created_at timestamp
+}
+
+Table user {
+id integer [primary key]
+name varchar
+role role
+favorites integer [ref: > product.id]
+created_at timestamp
+}
+
+table ticket {
+id integer [primary key]
+user_id []
+title varchar
+description varchar
+risk risk
+}
+
+Enum risk {
+  low
+  medium
+  high
+}
+
+Enum role {
+  admin
+  client
+  seller
+}
+
+Ref: user.id > ticket.id

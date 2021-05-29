@@ -1,0 +1,11 @@
+server:
+  PORT: 3000
+db:
+  host: "127.0.0.1"
+  port: "3308"
+  user: "admin"
+  password: "admin123"
+  databaseName: "mba_microservices_order"
+kafka:
+  groupId: "kafka"
+  host: "localhost:9092"

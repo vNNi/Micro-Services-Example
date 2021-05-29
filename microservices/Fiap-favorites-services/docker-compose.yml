@@ -1,0 +1,46 @@
+version: "3.2"
+services:
+  nodejs:
+    build: .
+    networks:
+      - frontend
+      - backend
+    environment:
+      - MYSQL_HOST=mba-mysql-favorites
+      - MYSQL_USER=admin
+      - MYSQL_PASS=admin123
+      - MYSQL_DB=mba_microservices_favorites
+    volumes:
+      - ./www/:/var/www/html/
+    ports:
+      - "3000:3000"
+    container_name: mba-nodejs-app
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin123
+      - MYSQL_DATABASE=mba_microservices_favorites
+    container_name: mba-mysql-favorites
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    ports:
+      - "30002:80"
+    environment:
+      - PMA_HOST=mba-mysql-favorites
+      - PMA_PORT= 3306
+    volumes:
+      - /sessions
+    container_name: mba-phpmyadmin-favorites
+networks:
+  frontend:
+  backend:

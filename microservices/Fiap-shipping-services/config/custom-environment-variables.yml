@@ -1,0 +1,7 @@
+server:
+  PORT: PORT
+db:
+  host: MYSQL_HOST
+  user: MYSQL_USER
+  password: MYSQL_PASS
+  databaseName: MYSQL_DB
