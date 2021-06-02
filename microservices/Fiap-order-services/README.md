@@ -1,4 +1,4 @@
-# Fiap-microservice-order
+# Fiap-order-service
 
 ### Domain
 From Order domain, created a micro service to expose their functionalities
@@ -37,3 +37,19 @@ Inside docker or with mysql configured in you machine, run:
 5. AVSC - Buffer parser
 6. Node-config - Configuration file lib (from enviroment and yml)
 
+### Running 
+
+#### Inside docker
+
+1. docker-compose up
+
+### Locally
+
+1. npm start
+
+### Swagger
+
+API Documentation follow `OpenApi`:
+#### Url
+
+http://localhost:4008/api-docs/#/

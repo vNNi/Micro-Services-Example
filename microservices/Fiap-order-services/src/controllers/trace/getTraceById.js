@@ -1,11 +1,18 @@
-// eslint-disable-next-line no-unused-vars
 const curryGetTraceById = ({ getOrderById } = {}) => {
   const getTraceByProductId = async (req, res) => {
-    const { id } = req.params;
+    try {
+      const { id } = req.params;
 
-    const trace = await getOrderById(id);
+      const trace = await getOrderById(id);
+      if(trace?.length){
+       res.status(200).json({ orders: trace });
+      } else {
+        res.status(404).json({ orders: [], error: 'NOT FOUND TRACE' })
+      }
+    } catch (error) {
+      res.status(500).json({ orders: [], error })
+    }
 
-    res.status(200).json(trace);
   };
 
   return getTraceByProductId;

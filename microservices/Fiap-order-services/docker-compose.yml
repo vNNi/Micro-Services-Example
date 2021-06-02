@@ -13,7 +13,7 @@ services:
     volumes:
       - ./www/:/var/www/html/
     ports:
-      - "3000:3000"
+      - "4008:4008"
     container_name: mba-nodejs-app
   mysql:
     image: mysql:5.7
@@ -39,7 +39,7 @@ services:
       - "30002:80"
     environment:
       - PMA_HOST=mba-mysql-order
-      - PMA_PORT= 3306
+      - PMA_PORT= 3308
     volumes:
       - /sessions
     container_name: mba-phpmyadmin-order
