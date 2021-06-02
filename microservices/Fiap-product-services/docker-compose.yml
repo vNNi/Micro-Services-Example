@@ -7,7 +7,7 @@ services:
       - backend
       - sb
     environment:
-      - MYSQL_HOST=mba-mysql-app
+      - MYSQL_HOST=mba-product-db
       - MYSQL_USER=admin
       - MYSQL_PASS=admin123
       - MYSQL_DB=mba_microservices_amazon
@@ -29,7 +29,7 @@ services:
       - MYSQL_DATABASE=mba_microservices_amazon
     volumes:
       - mysql_product:/var/lib/mysql
-    container_name: mba-mysql-app
+    container_name: mba-product-db
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
     depends_on:
