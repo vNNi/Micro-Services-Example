@@ -2,8 +2,8 @@
 	"swagger": "2.0",
 	"info": {
 		"version": "1.0.0",
-		"title": "Fiap Microservices - Amazon case",
-		"description": "Using all concepts from build a microservice",
+		"title": "Fiap Microservices - Product service",
+		"description": "Search products, filtering by id, category, genre or term",
 		"license": {
 			"name": "MIT",
 			"url": "https://opensource.org/licenses/MIT"
@@ -12,8 +12,8 @@
 	"host": "localhost:3000",
 	"basePath": "/",
 	"tags": [{
-		"name": "Amazon",
-		"description": "API for Fiap MBA"
+		"name": "Product",
+		"description": "Product Domain"
 	}],
 	"schemes": ["http"],
 	"consumes": ["application/json"],
@@ -63,55 +63,55 @@
                 "created_at": "2021-05-18T03:49:41.000Z",
                 "updated_at": "2021-05-18T03:49:41.000Z"
               }
-            ],
-						"schema": {
-							"$ref": "#/definitions/Product"
-						}
+            ]
 					}
 				}
 			}
-		}
-	},
-	"definitions": {
-		"Product": {
-			"required": [
-				"name",
-				"_id",
-				"companies"
-			],
-			"properties": {
-				"_id": {
-					"type": "integer",
-					"uniqueItems": true
+		},
+    "/products/{productId}": {
+      "get": {
+       "tags": ["Products"],
+				"description": "Get detail of a product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "description": "filter by id",
+            "type": "integer",
+            "example": "2"
+          }
+        ],
+        "responses": {
+					"200": {
+						"products": [
+              {
+                  "id": 2,
+                  "title": "iPhone XR Apple 64GB Preto",
+                  "description": "iPhone XR Apple 64GB Preto 6,1” 12MP iOS com as melhores condições você encontra no site do Magalu. Confira!",
+                  "sort": "celulares",
+                  "price": 3719.07,
+                  "category": "TE",
+                  "visited": 6,
+                  "created_at": "2021-05-29T22:45:56.000Z",
+                  "updated_at": "2021-05-29T22:45:56.000Z",
+                  "purchased": 1,
+                  "stock_count": 4,
+                  "reports_open": 0
+              }
+            ]
+					},
+          "404": {
+            "product": null
+          },
+          "500": {
+            "product": [],
+             "error": "something went wrong"
+          }
 				},
-				"isPublic": {
-					"type": "boolean"
-				},
-				"name": {
-					"type": "string"
-				},
-				"books": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"name": {
-								"type": "string"
-							},
-							"amount": {
-								"type": "number"
-							}
-						}
-					}
-
-				},
-				"companies": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
-		}
+        "produces": [
+					"application/json"
+				]
+      }
+    }
 	}
 }

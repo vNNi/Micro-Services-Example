@@ -25,11 +25,18 @@ const productRepository = ({ db } = {}) => {
       });
   };
 
+  const productReported = async ({ productId }) => {
+    return db("product").where("id", productId).increment({
+      reports_open: 1,
+    });
+  };
+
   return Object.freeze({
     searchById,
     productRepo,
     productVisited,
     productOrdered,
+    productReported,
   });
 };
 

@@ -1,13 +1,19 @@
 const curryGetProduct = ({ searchProduct }) => {
   const getProducts = async (req, res) => {
-    const { id } = req.params;
-    const product = await searchProduct(id);
+    try {
+      const { id } = req.params;
+      const product = await searchProduct(id);
 
-    if (product) {
-      return res.json({ product }).status(200);
+      if (product?.length) {
+        return res.json({ product }).status(200);
+      } else {
+      return res.json({ product: null }).status(404);
+
+      }
+    } catch (error) {
+      return res.json({ product: null, error }).status(500);
+
     }
-
-    return res.json({ product: null }).status(404);
   };
   return getProducts;
 };

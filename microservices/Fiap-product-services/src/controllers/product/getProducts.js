@@ -1,18 +1,24 @@
 const curryGetProducts = ({ searchProducts }) => {
   const getProducts = async (req, res) => {
-    const { pageSize, page, category, term, genre, order: orderParam } = req.query;
+    try {
+      const { pageSize, page, category, term, genre, order: orderParam } = req.query;
 
-    const order = orderParam?.split(",");
+      const order = orderParam?.split(",");
 
-    const filters = { category, term, sort: genre };
+      const filters = { category, term, sort: genre };
 
-    const products = await searchProducts({ pageSize, page, filters, order });
+      const products = await searchProducts({ pageSize, page, filters, order });
 
-    if (products.data) {
-      return res.json({ products }).status(200);
+      if (products.data) {
+        res.json({ products }).status(200);
+      } else {
+        res.json({ products: null }).status(404);
+      }
+
+    } catch (error) {
+      res.json({ products: null, error }).status(500);
     }
 
-    return res.json({ products: null }).status(404);
   };
   return getProducts;
 };

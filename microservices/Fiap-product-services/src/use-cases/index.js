@@ -5,6 +5,7 @@ import currySearchProducts from "./search-products.js";
 import currySearchProduct from "./search-product.js";
 import curryProductUpdate from "./update-visited-product.js";
 import curryProductOrdered from "./updated-ordered-product.js";
+import curryProductReported from "./update-report-open-product.js";
 
 export const updateProductVisited = curryProductUpdate({
   db: productRepository,
@@ -12,6 +13,11 @@ export const updateProductVisited = curryProductUpdate({
   consumer: productBroker.productConsumer(),
 })();
 export const updateProductOrdered = curryProductOrdered({
+  db: productRepository,
+  parser,
+  consumer: productBroker.productConsumer(),
+})();
+export const updateProductReported = curryProductReported({
   db: productRepository,
   parser,
   consumer: productBroker.productConsumer(),
