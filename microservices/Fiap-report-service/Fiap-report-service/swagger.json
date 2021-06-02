@@ -1,0 +1,119 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Fiap Microservices - Report service",
+		"description": "Create and read tickets opens",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"tags": [{
+		"name": "Ticket",
+		"description": "API for create Report/Ticket"
+	}],
+	"schemes": ["http"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+	"paths": {
+		"/report/ticket": {
+			"post": {
+				"tags": ["Ticket"],
+				"description": "Create ticket",
+				"parameters": [
+          {
+            "in": "body",
+            "description": "create a ticket from it",
+            "schema": {
+              "$ref": "#/definitions/Ticket"
+            }
+          }
+        ],
+        "produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+            "ticketId": 4,
+            "error": null
+          },
+          "500": {
+            "ticketId": null,
+            "error": "unexpected error"
+          },
+          "203": {
+            "ticketId": null,
+            "error": "can not create ticket"
+          }
+				}
+			}
+		},
+    "/report/tickets": {
+        "get": {
+          "tags": ["Tickets"],
+          "description": "Get tickets",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": [
+              {
+                "id": 1,
+                "user_id": 2,
+                "type": "PRODUCT",
+                "product_id": 1,
+                "title": "Produto com preço errado",
+                "description": "Esse produto aqui está muito caro, comparado com o mercado. Creio que o preço esteja errado: http://localhost:40001/product/1",
+                "risk": "HIGH",
+                "created_at": "2021-05-30T21:19:40.000Z",
+                "updated_at": "2021-05-30T21:19:40.000Z"
+              }
+            ],
+            "500": {
+              "error": "unexpected error"
+            }
+          }
+        }
+    }
+	},
+	"definitions": {
+		"Ticket": {
+			"required": [
+				"type",
+				"risk",
+				"title",
+        "user_id"
+			],
+			"properties": {
+			  "ticket": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "risk": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "product_id": {
+              "type": "integer",
+              "uniqueItems": true
+            },
+            "user_id": {
+              "type": "integer",
+              "uniqueItems": true
+            }
+          }
+        }
+	  	}
+	  }
+  }
+}

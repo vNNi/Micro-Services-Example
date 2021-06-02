@@ -1,0 +1,67 @@
+Table product {
+id integer [primary key]
+title varchar
+description varchar
+sort varchar
+price float
+category varchar
+visited int
+created_at timestamp
+}
+
+Table user {
+id integer [primary key]
+name varchar
+role role
+favorites integer [ref: > product.id]
+created_at timestamp
+}
+
+table ticket {
+id integer [primary key]
+type ticket_type
+user_id integer
+title varchar
+description varchar
+risk ticket_risk
+product_id integer
+}
+
+Enum ticket_risk {
+  low
+  medium
+  high
+}
+
+Enum role {
+  admin
+  client
+  seller
+}
+
+Enum ticket_type {
+  PRODUCT
+  USER
+  OTHER
+}
+
+Table order {
+  id integer [primary key]
+  product_id integer
+  user_id integer
+  shipping_estimate integer
+  product_price float
+  title varchar
+  description varchar
+  completed boolean
+}
+
+Ref: order.product_id > product.id
+
+Ref: order.user_id > user.id
+
+Ref: user.id > ticket.id
+
+Ref: ticket.user_id > user.id
+
+Ref: ticket.product_id > product.id
