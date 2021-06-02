@@ -1,5 +1,5 @@
 {
-  "name": "Fiap-microservice-shipping",
+  "name": "Fiap-shipping-service",
   "version": "1.0.0",
   "description": "Fiap MBA Microservice Shipping Service",
   "main": "index.js",
@@ -13,21 +13,18 @@
     "db:seed:make": "knex seed:make"
   },
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.6",
+    "correios-brasil": "^2.2.2",
     "express": "^4.17.1",
     "knex": "^0.95.5",
     "knex-paginate": "^2.1.0",
     "mysql": "^2.18.1",
-    "node-correios": "^3.0.2",
     "nodemon": "^2.0.7",
+    "opossum": "^6.1.0",
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {

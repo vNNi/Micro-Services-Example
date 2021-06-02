@@ -1,12 +1,16 @@
 server:
-  PORT: 3000
+  PORT: 4022
 shipping:
-  defaultOrigin: "01001001"
+  defaultOrigin: "81200100"
   defaultService: "04510"
-  defaultFormat: 1
+  defaultFormat: "1"
+  circuit:
+    timeout: 30000,
+    errorThresholdPercentage: 30,
+    resetTimeout: 20000,
 db:
   host: "127.0.0.1"
-  port: "3306"
+  port: "3322"
   user: "admin"
   password: "admin123"
   databaseName: "mba_microservices_favorites"

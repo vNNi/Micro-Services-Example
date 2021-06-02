@@ -13,12 +13,12 @@ services:
     volumes:
       - ./www/:/var/www/html/
     ports:
-      - "3000:3000"
-    container_name: mba-nodejs-app
+      - "4022:4022"
+    container_name: mba-shipping-service
   mysql:
     image: mysql:5.7
     ports:
-      - 3306:3306
+      - 3322:3306
     networks:
       - backend
     environment:
@@ -26,6 +26,8 @@ services:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin123
       - MYSQL_DATABASE=mba_microservices_shipping
+    volumes:
+      - mysql_shipping:/var/lib/mysql
     container_name: mba-mysql-shipping
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
@@ -37,10 +39,12 @@ services:
       - "30002:80"
     environment:
       - PMA_HOST=mba-mysql-shipping
-      - PMA_PORT= 3306
+      - PMA_PORT= 3322
     volumes:
       - /sessions
     container_name: mba-phpmyadmin-shipping
 networks:
   frontend:
   backend:
+volumes:
+  mysql_shipping:

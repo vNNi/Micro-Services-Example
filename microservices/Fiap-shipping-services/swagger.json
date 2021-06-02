@@ -2,48 +2,41 @@
 	"swagger": "2.0",
 	"info": {
 		"version": "1.0.0",
-		"title": "Fiap Microservices - Amazon case",
-		"description": "Using all concepts from build a microservice",
+		"title": "Fiap Microservices - Shipping service",
+		"description": "Get Estimate from product",
 		"license": {
 			"name": "MIT",
 			"url": "https://opensource.org/licenses/MIT"
 		}
 	},
-	"host": "localhost:3000",
+	"host": "localhost:4022",
 	"basePath": "/",
 	"tags": [{
-		"name": "Amazon",
-		"description": "API for Fiap MBA"
+		"name": "Shipping",
+		"description": "API for estimate product shipping"
 	}],
 	"schemes": ["http"],
 	"consumes": ["application/json"],
 	"produces": ["application/json"],
 	"paths": {
-		"/products/": {
-			"get": {
-				"tags": ["Products"],
-				"description": "Search Products",
+		"/shipping/estimate/{zipCode}": {
+			"post": {
+				"tags": ["Shipping"],
+				"description": "Shipping Product",
 				"parameters": [
           {
-            "in": "query",
-            "name": "category",
-            "description": "filter by a category id",
-            "type": "string",
-            "example": "category=ED"
+            "in": "path",
+            "name": "zipCode",
+            "description": "Get estimate Shipping from zipCode",
+            "type": "integer",
+            "example": "03448010"
           },
           {
-            "in": "query",
-            "name": "term",
-            "description": "filter by a term",
-            "type": "string",
-            "example": "term=iphone"
-          },
-          {
-            "in": "query",
-            "name": "genre",
-            "description": "filter by a genre",
-            "type": "string",
-            "example": "genre=eletrodoméstico"
+            "in": "body",
+            "description": "Get estimate by a product dimensions",
+            "schema": {
+              "$ref": "#/definitions/Estimate"
+            }
           }
         ],
         "produces": [
@@ -51,67 +44,60 @@
 				],
 				"responses": {
 					"200": {
-						"products": [
-              {
-                "id": 1,
-                "title": "Geladeira brastemp frost free",
-                "description": "Geladeira Brastemp Frost Free Evox - Inverse 540,6L Ative BRO80 AK com as melhores condições você encontra no site do Magalu. Confira!",
-                "sort": "eletrodoméstico",
-                "price": 5496,
-                "category": "ED",
-                "visited": 0,
-                "created_at": "2021-05-18T03:49:41.000Z",
-                "updated_at": "2021-05-18T03:49:41.000Z"
-              }
-            ],
-						"schema": {
-							"$ref": "#/definitions/Product"
-						}
-					}
+						"estimate": 	{
+              "Codigo": "04510",
+              "Valor": "24,80",
+              "PrazoEntrega": "7",
+              "ValorSemAdicionais": "24,80",
+              "ValorMaoPropria": "0,00",
+              "ValorAvisoRecebimento": "0,00",
+              "ValorValorDeclarado": "0,00",
+              "EntregaDomiciliar": "S",
+              "EntregaSabado": "N",
+              "Erro": "0"
+            }
+          },
+          "404": {
+          "estimate": null
+          },
+          "500": {
+            "error": "something went wrong"
+          }
 				}
 			}
 		}
 	},
 	"definitions": {
-		"Product": {
+		"Estimate": {
 			"required": [
-				"name",
-				"_id",
-				"companies"
+				"length",
+				"weight",
+				"height",
+        "width",
+        "depth"
 			],
 			"properties": {
-				"_id": {
-					"type": "integer",
-					"uniqueItems": true
-				},
-				"isPublic": {
-					"type": "boolean"
-				},
-				"name": {
-					"type": "string"
-				},
-				"books": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"name": {
-								"type": "string"
-							},
-							"amount": {
-								"type": "number"
-							}
-						}
-					}
-
-				},
-				"companies": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				}
-			}
+				"product": {
+          "type": "object",
+          "properties": {
+            "length": {
+              "type": "string"
+            },
+            "weight": {
+              "type": "string"
+            },
+            "height": {
+              "type": "string"
+            },
+            "width": {
+              "type": "string"
+            },
+            "depth": {
+              "type": "string"
+            }
+          }
+        }
+      }
 		}
 	}
 }
