@@ -6,4 +6,4 @@ RUN npm install
 
 EXPOSE 4008
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]

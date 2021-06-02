@@ -1,7 +1,7 @@
 {
-  "name": "Fiap-microservice-order",
+  "name": "Fiap-microservice-favorites",
   "version": "1.0.0",
-  "description": "Fiap MBA Microservice Order Service",
+  "description": "Fiap MBA Microservice Favorite Service",
   "main": "index.js",
   "scripts": {
     "start": "node --experimental-json-modules ./src/index.js",
@@ -13,10 +13,6 @@
     "db:seed:make": "knex seed:make"
   },
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:vNNi/Fiap-order-service.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",

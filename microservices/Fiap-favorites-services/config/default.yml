@@ -1,8 +1,8 @@
 server:
-  PORT: 3000
+  PORT: 4010
 db:
   host: "127.0.0.1"
-  port: "3306"
+  port: "3310"
   user: "admin"
   password: "admin123"
   databaseName: "mba_microservices_favorites"

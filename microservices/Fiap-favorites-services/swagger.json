@@ -2,48 +2,34 @@
 	"swagger": "2.0",
 	"info": {
 		"version": "1.0.0",
-		"title": "Fiap Microservices - Amazon case",
-		"description": "Using all concepts from build a microservice",
+		"title": "Fiap Microservices - Favorite service",
+		"description": "Create and read Favorites for user and product",
 		"license": {
 			"name": "MIT",
 			"url": "https://opensource.org/licenses/MIT"
 		}
 	},
-	"host": "localhost:3000",
+	"host": "localhost:4010",
 	"basePath": "/",
 	"tags": [{
-		"name": "Amazon",
-		"description": "API for Fiap MBA"
+		"name": "Favorites",
+		"description": "API for Favorites Doamin"
 	}],
 	"schemes": ["http"],
 	"consumes": ["application/json"],
 	"produces": ["application/json"],
 	"paths": {
-		"/products/": {
+		"/favorites/user/{userId}": {
 			"get": {
-				"tags": ["Products"],
-				"description": "Search Products",
+				"tags": ["Favorites"],
+				"description": "Details from Favorites products by User",
 				"parameters": [
           {
-            "in": "query",
-            "name": "category",
-            "description": "filter by a category id",
-            "type": "string",
-            "example": "category=ED"
-          },
-          {
-            "in": "query",
-            "name": "term",
-            "description": "filter by a term",
-            "type": "string",
-            "example": "term=iphone"
-          },
-          {
-            "in": "query",
-            "name": "genre",
-            "description": "filter by a genre",
-            "type": "string",
-            "example": "genre=eletrodoméstico"
+            "in": "path",
+            "name": "userId",
+            "description": "select favorites by user id",
+            "type": "number",
+            "example": "1"
           }
         ],
         "produces": [
@@ -51,67 +37,63 @@
 				],
 				"responses": {
 					"200": {
-						"products": [
+            "favorites": [
               {
-                "id": 1,
-                "title": "Geladeira brastemp frost free",
-                "description": "Geladeira Brastemp Frost Free Evox - Inverse 540,6L Ative BRO80 AK com as melhores condições você encontra no site do Magalu. Confira!",
-                "sort": "eletrodoméstico",
-                "price": 5496,
-                "category": "ED",
-                "visited": 0,
-                "created_at": "2021-05-18T03:49:41.000Z",
-                "updated_at": "2021-05-18T03:49:41.000Z"
+                  "id": 1,
+                  "user_id": 1,
+                  "product_id": 3,
+                  "created_at": "2021-05-24T00:13:00.000Z",
+                  "updated_at": "2021-05-24T00:13:00.000Z"
+              },
+              {
+                  "id": 2,
+                  "user_id": 1,
+                  "product_id": 100,
+                  "created_at": "2021-05-24T00:46:48.000Z",
+                  "updated_at": "2021-05-24T00:46:48.000Z"
+              },
+              {
+                  "id": 5,
+                  "user_id": 1,
+                  "product_id": 150,
+                  "created_at": "2021-05-24T00:49:12.000Z",
+                  "updated_at": "2021-05-24T00:49:12.000Z"
               }
-            ],
-						"schema": {
-							"$ref": "#/definitions/Product"
-						}
-					}
+          ]
+					},
+          "404": {
+            "favorites": null
+          }
 				}
 			}
-		}
-	},
-	"definitions": {
-		"Product": {
-			"required": [
-				"name",
-				"_id",
-				"companies"
-			],
-			"properties": {
-				"_id": {
-					"type": "integer",
-					"uniqueItems": true
-				},
-				"isPublic": {
-					"type": "boolean"
-				},
-				"name": {
-					"type": "string"
-				},
-				"books": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"name": {
-								"type": "string"
-							},
-							"amount": {
-								"type": "number"
-							}
-						}
-					}
-
-				},
-				"companies": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
+		},
+    "/favorites/{productId}": {
+      "post": {
+				"tags": ["Favorites"],
+				"description": "Create Favorite from product id",
+				"parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "description": "create product",
+            "type": "number",
+            "example": "150"
+          }
+        ],
+        "produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+            "success": true,
+            "userId": 1
+          },
+          "500": {
+            "success": false,
+            "error": "something went wrong"
+          }
 				}
 			}
-		}
+    }
 	}
 }

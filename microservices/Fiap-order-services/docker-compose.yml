@@ -14,7 +14,7 @@ services:
       - ./www/:/var/www/html/
     ports:
       - "4008:4008"
-    container_name: mba-nodejs-app
+    container_name: mba-order-service
   mysql:
     image: mysql:5.7
     ports:
