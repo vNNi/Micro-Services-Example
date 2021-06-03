@@ -6,11 +6,13 @@ services:
       - frontend
       - backend
       - sb
+      - microservices-fiap_kafka
     environment:
       - MYSQL_HOST=mba-product-db
       - MYSQL_USER=admin
       - MYSQL_PASS=admin123
       - MYSQL_DB=mba_microservices_amazon
+      - KAFKA_HOST=kafka:29092
     volumes:
       - ./www/:/var/www/html/
     ports:
@@ -72,5 +74,7 @@ networks:
   backend:
   sb:
     driver: bridge
+  microservices-fiap_kafka:
+    external: true
 volumes:
   mysql_product:

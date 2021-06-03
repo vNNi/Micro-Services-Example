@@ -5,11 +5,13 @@ services:
     networks:
       - frontend
       - backend
+      - microservices-fiap_kafka
     environment:
       - MYSQL_HOST=mba-mysql-favorites
       - MYSQL_USER=admin
       - MYSQL_PASS=admin123
       - MYSQL_DB=mba_microservices_favorites
+      - KAFKA_HOST=kafka:29092
     volumes:
       - ./www/:/var/www/html/
     ports:
@@ -46,5 +48,7 @@ services:
 networks:
   frontend:
   backend:
+  microservices-fiap_kafka:
+    external: true
 volumes:
   mysql_favorite:

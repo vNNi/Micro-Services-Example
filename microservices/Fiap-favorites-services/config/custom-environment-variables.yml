@@ -5,3 +5,5 @@ db:
   user: MYSQL_USER
   password: MYSQL_PASS
   databaseName: MYSQL_DB
+kafka:
+  host: KAFKA_HOST
