@@ -2,6 +2,7 @@ server:
   PORT: PORT
 db:
   host: MYSQL_HOST
+  port: MYSQL_PORT
   user: MYSQL_USER
   password: MYSQL_PASS
   databaseName: MYSQL_DB
