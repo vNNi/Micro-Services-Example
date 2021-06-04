@@ -12,10 +12,13 @@ From Favorite domain, created a micro service to expose their functionalities
 
 To install all project, follow:
 
+### Locally
+
 1. npm install
-2. docker-compose up -d mysql zookeeper
-3. ./scripts/start-kafka.sh
-4. ./scripts/create-topic-product-favorited.sh
+2. npm run dev
+
+### From docker
+2. docker-compose up -d mysql nodejs
 
 ### Run migrations
 
@@ -44,3 +47,5 @@ API Documentation follow `OpenApi`:
 ## Url
 
 http://localhost:4010/api-docs/#/
+
+![swagger](docs/swagger_favorites.png)

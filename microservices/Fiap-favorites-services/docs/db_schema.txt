@@ -1,9 +1,9 @@
 Project social_blogging_site {
 database_type: 'Mysql'
-Note: 'Uebaaaaa'
+Note: 'Micro service vis'
 }
 
-Table products {
+Table product {
 id integer [primary key]
 title varchar
 description varchar
@@ -18,19 +18,21 @@ Table user {
 id integer [primary key]
 name varchar
 role role
-favorites integer [ref: > products.id]
+favorites integer [ref: > product.id]
 created_at timestamp
 }
 
 table ticket {
 id integer [primary key]
-user_id []
+type ticket_type
+user_id integer
 title varchar
 description varchar
-risk risk
+risk ticket_risk
+product_id integer
 }
 
-Enum risk {
+Enum ticket_risk {
   low
   medium
   high
@@ -40,6 +42,12 @@ Enum role {
   admin
   client
   seller
+}
+
+Enum ticket_type {
+  PRODUCT
+  USER
+  OTHER
 }
 
 Table order {
@@ -53,8 +61,12 @@ Table order {
   completed boolean
 }
 
-Ref: order.product_id > products.id
+Ref: order.product_id > product.id
 
 Ref: order.user_id > user.id
 
 Ref: user.id > ticket.id
+
+Ref: ticket.user_id > user.id
+
+Ref: ticket.product_id > product.id

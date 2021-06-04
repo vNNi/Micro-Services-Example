@@ -3,34 +3,35 @@
 ### Domain
 From Shipping domain, created a micro service to expose their functionalities
 
-### Setup
+## Setup
 
-## Prerequisite
+### Prerequisite
 
 > Docker
 > Node >= 14
 
 To install all project, follow:
+### Locally
 
 1. npm install
-2. docker-compose up -d mysql zookeeper
-3. ./scripts/start-kafka.sh
+2. npm run dev
 
-### Run migrations
+### From docker
+1. docker-compose up -d nodejs
 
-Inside docker or with mysql configured in you machine, run:
-
-> `./node_modules/knex/bin/cli.js migrate:latest --esm`
-
-### Run seeds
-
-> `./node_modules/knex/bin/cli.js seed:run --esm`
-
-### Technologies
+## Technologies
 
 1. Javascript - Programming language
 2. Express - Server framework
-4. Mysql - Data base/Repository
-3. knex - ORM for mysql
-6. Node-config - Configuration file lib (from enviroment and yml)
+3. Correios-brasil - Connection lib to Correios XML API.
+4. Opossum - CB Lib
+5. Node-config - Configuration file lib (from environment and yml)
 
+### Swagger
+
+API Documentation follow `OpenApi`:
+#### Url
+
+http://localhost:4022/api-docs/#/
+
+![swagger-image](docs/shipping_swagger.png)

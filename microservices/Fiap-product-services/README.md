@@ -1,4 +1,4 @@
-# Fiap-microservice-product
+# Fiap-product-service
 
 ### Domain
 From Product domain, created a micro service to expose their functionalities
@@ -9,14 +9,18 @@ From Product domain, created a micro service to expose their functionalities
 
 > Docker
 > Node >= 14 (to run locally - without docker)
+> Kafka from docker network or locally (../README.md)
 
 To install all project, follow:
+### Locally
 
 1. npm install
-2. docker-compose up -d mysql zookeeper
-3. ./scripts/start-kafka.sh
-4. ./scripts/create-topic-ordered.sh
-5. ./scripts/create-topic-viewed.sh
+2. npm run dev
+
+### From docker
+1. ./scripts/create-topic-ordered.sh
+2. ./scripts/create-topic-viewed.sh
+3. docker-compose up -d mysql nodejs
 
 ### Run migrations
 
@@ -36,17 +40,7 @@ Inside docker or with mysql configured in you machine, run:
 3. knex - ORM for mysql
 4. node-rdkafka - Kafka abstraction lib
 5. AVSC - Buffer parser
-6. Node-config - Configuration file lib (from enviroment and yml)
-
-### Running 
-
-#### Inside docker
-
-1. docker-compose up
-
-### Locally
-
-1. npm start
+6. Node-config - Configuration file lib (from environment and yml)
 
 ### Swagger
 
@@ -55,3 +49,4 @@ API Documentation follow `OpenApi`:
 
 http://localhost:3000/api-docs/#/
 
+![swagger](docs/swagger_product.png)

@@ -1,6 +1,6 @@
 Project social_blogging_site {
 database_type: 'Mysql'
-Note: 'MBA Microservices - Amazon'
+Note: 'Micro service vis'
 }
 
 Table product {
@@ -24,13 +24,15 @@ created_at timestamp
 
 table ticket {
 id integer [primary key]
-user_id []
+type ticket_type
+user_id integer
 title varchar
 description varchar
-risk risk
+risk ticket_risk
+product_id integer
 }
 
-Enum risk {
+Enum ticket_risk {
   low
   medium
   high
@@ -42,4 +44,29 @@ Enum role {
   seller
 }
 
+Enum ticket_type {
+  PRODUCT
+  USER
+  OTHER
+}
+
+Table order {
+  id integer [primary key]
+  product_id integer
+  user_id integer
+  shipping_estimate integer
+  product_price float
+  title varchar
+  description varchar
+  completed boolean
+}
+
+Ref: order.product_id > product.id
+
+Ref: order.user_id > user.id
+
 Ref: user.id > ticket.id
+
+Ref: ticket.user_id > user.id
+
+Ref: ticket.product_id > product.id
