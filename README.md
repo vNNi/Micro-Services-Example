@@ -8,6 +8,7 @@ NodeJs, Express, Kafka and Mysql micro services example.
 ### Prerequisite
 
 > Docker
+
 > Node >= 14 (to run locally - without docker)
 
 To install all project, follow:
