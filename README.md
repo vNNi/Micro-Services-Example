@@ -1,5 +1,5 @@
 # Micro-Services-Example
-NodeJs, Express, Kafka and Mysql micro services example.
+Build Amazon Application using Micro services architecture.
 
 ![arquitetura](/docs/Arch.png)
 
