@@ -33,7 +33,7 @@ Inside docker or with mysql configured in you machine, run:
 
 > `./node_modules/knex/bin/cli.js seed:run --esm`
 
-### Technologies
+## Technologies
 
 1. 🛠 - Javascript - Programming language
 2. 🚀 - Express - Server framework
