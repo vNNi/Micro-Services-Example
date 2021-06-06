@@ -1,5 +1,5 @@
 # Micro-Services-Example
-NodeJs, Express, Kafka and Mysql micro services example.
+Build Amazon Application using Micro services architecture.
 
 ![arquitetura](/docs/Arch.png)
 
@@ -8,6 +8,7 @@ NodeJs, Express, Kafka and Mysql micro services example.
 ### Prerequisite
 
 > Docker
+
 > Node >= 14 (to run locally - without docker)
 
 To install all project, follow:
@@ -32,7 +33,7 @@ Inside docker or with mysql configured in you machine, run:
 
 > `./node_modules/knex/bin/cli.js seed:run --esm`
 
-### Technologies
+## Technologies
 
 1. 🛠 - Javascript - Programming language
 2. 🚀 - Express - Server framework
