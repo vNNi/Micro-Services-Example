@@ -1,7 +1,7 @@
 # Micro-Services-Example
 Build Amazon Application using Micro services architecture.
 
-![arquitetura](/docs/Arch.png)
+![arquitetura](docs/Arch.png)
 
 ## Setup
 
@@ -11,11 +11,23 @@ Build Amazon Application using Micro services architecture.
 
 > Node >= 14 (to run locally - without docker)
 
-To install all project, follow:
+To install all project, follow these steps:
 
 1. ./scripts/start-kafka.sh
 2. ./scripts/create-topics.sh
 3. ./scripts/run-daemons.sh
+
+#### Warning
+
+If step `3` fails, please try:
+
+1. ```cd ./microservices/Fiap-favorites-services && docker-compose run -d mysql nodejs ```
+2. ``` cd ./microservices/Fiap-order-services && docker-compose run -d mysql nodejs ```
+3. ``` cd ./microservices/Fiap-product-services && docker-compose run -d mysql nodejs ```
+4. ```cd ./microservices/Fiap-report-services && docker-compose run -d mysql nodejs ```
+5. ``` cd ./microservices/Fiap-shipping-services && docker-compose run -d mysql nodejs ```
+
+Or follow each micro service README.
 
 ## Run migrations
 
